@@ -1,0 +1,85 @@
+import pandas as pd
+
+class Hospital:
+    def __init__(self):
+        self.patients = {}
+        self.doctors = {}
+
+    def add_patient(self, name, age, disease):
+        self.patients[name] = {"age": age, "disease": disease}
+        print(f"Patient '{name}' added successfully.")
+
+    def add_doctor(self, name, specialization):
+        self.doctors[name] = {"specialization": specialization}
+        print(f"Doctor '{name}' added successfully.")
+
+    def display_patients(self):
+        if self.patients:
+            print("Patients:")
+            for patient, details in self.patients.items():
+                print(f"Name: {patient}, Age: {details['age']}, Disease: {details['disease']}")
+        else:
+            print("No patients found.")
+
+    def display_doctors(self):
+        if self.doctors:
+            print("Doctors:")
+            for doctor, details in self.doctors.items():
+                print(f"Name: {doctor}, Specialization: {details['specialization']}")
+        else:
+            print("No doctors found.")
+
+    def search_patient(self, name):
+        if name in self.patients:
+            print(f"Patient found: {name}")
+            print(f"Age: {self.patients[name]['age']}, Disease: {self.patients[name]['disease']}")
+        else:
+            print(f"Patient not found: {name}")
+
+    def search_doctor(self, name):
+        if name in self.doctors:
+            print(f"Doctor found: {name}")
+            print(f"Specialization: {self.doctors[name]['specialization']}")
+        else:
+            print(f"Doctor not found: {name}")
+
+def main():
+    hospital = Hospital()
+    while True:
+        print("\nHospital Management System")
+        print("1. Add Patient")
+        print("2. Add Doctor")
+        print("3. Display Patients")
+        print("4. Display Doctors")
+        print("5. Search Patient")
+        print("6. Search Doctor")
+        print("7. Exit")
+        choice = input("Enter your choice: ")
+        if choice == "1":
+            name = input("Enter patient name: ")
+            age = input("Enter patient age: ")
+            disease = input("Enter patient disease: ")
+            hospital.add_patient(name, age, disease)
+        elif choice == "2":
+            name = input("Enter doctor name: ")
+            specialization = input("Enter doctor specialization: ")
+            hospital.add_doctor(name, specialization)
+        elif choice == "3":
+            hospital.display_patients()
+        elif choice == "4":
+            hospital.display_doctors()
+        elif choice == "5":
+            name = input("Enter patient name to search: ")
+            hospital.search_patient(name)
+        elif choice == "6":
+            name = input("Enter doctor name to search: ")
+            hospital.search_doctor(name)
+        elif choice == "7":
+            print("Exiting the system. Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    main()
+
